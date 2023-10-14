@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/breed_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="match_parent"
             android:layout_margin="0dp"
             android:contentDescription="@string/breed_photo_content_description"
