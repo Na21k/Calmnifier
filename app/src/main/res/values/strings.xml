@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Calmnifier</string>
+
+    <!--Titles-->
+    <string name="breeds_title">Breeds</string>
+
+    <!--Content descriptions-->
+    <string name="favorites_fab_content_description">Favorites</string>
+    <string name="breed_photo_content_description">Breed photo</string>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="page_margin">16dp</dimen>
+    <dimen name="list_item_margin">8dp</dimen>
+    <dimen name="corner_radius">10dp</dimen>
+    <dimen name="elevation">1dp</dimen>
+    <dimen name="title_text">22sp</dimen>
+    <dimen name="card_content_margin_horizontal">20dp</dimen>
+    <dimen name="card_content_margin_vertical">14dp</dimen>
+</resources>
