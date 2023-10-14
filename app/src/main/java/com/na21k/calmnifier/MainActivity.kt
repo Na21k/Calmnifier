@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.na21k.calmnifier.adapters.BreedsAdapter
 import com.na21k.calmnifier.api.BreedsService
 import com.na21k.calmnifier.databinding.ActivityMainBinding
+import com.na21k.calmnifier.helpers.enqueue
 import com.na21k.calmnifier.model.BreedModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadBreeds() {
         mBreedsService.list()
-            .enqueue(object : Callback<List<BreedModel>> {
+            .enqueue(lifecycleOwner = this, object : Callback<List<BreedModel>> {
 
                 override fun onResponse(
                     call: Call<List<BreedModel>>,
