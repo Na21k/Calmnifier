@@ -5,6 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
+import com.na21k.calmnifier.CAT_API_BASE_URL
+import com.na21k.calmnifier.CAT_API_IMAGES_ENDPOINT_NAME
+import com.na21k.calmnifier.R
 import com.na21k.calmnifier.databinding.BreedsListItemBinding
 import com.na21k.calmnifier.model.BreedModel
 
@@ -33,7 +37,16 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
     class BreedViewHolder(private val binding: BreedsListItemBinding) : ViewHolder(binding.root) {
 
         fun bind(model: BreedModel) {
-            //TODO: load the image using Glide
+            val imageId = model.referenceImageId
+            val imageModelUrl = "${CAT_API_BASE_URL}/${CAT_API_IMAGES_ENDPOINT_NAME}/${imageId}"
+            //TODO: load the image model and show the image from its url
+
+            Glide.with(itemView)
+                .load("https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg")
+                .placeholder(R.drawable.ic_image_24)
+                .error(R.drawable.ic_error_24)
+                .into(binding.breedPhoto)
+
             binding.breedName.text = model.name
         }
     }
