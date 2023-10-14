@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        mBinding.appBar.appBar.title = getString(R.string.breeds_title)
         setSupportActionBar(mBinding.appBar.appBar)
 
         mAdapter = setUpRecyclerView()
