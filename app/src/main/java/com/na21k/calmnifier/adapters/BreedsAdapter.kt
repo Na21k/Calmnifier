@@ -38,7 +38,7 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
 
         fun bind(model: BreedModel) {
             val imageId = model.referenceImageId
-            val imageModelUrl = "${CAT_API_BASE_URL}/${CAT_API_IMAGES_ENDPOINT_NAME}/${imageId}"
+            val imageModelUrl = CAT_API_BASE_URL + CAT_API_IMAGES_ENDPOINT_NAME + imageId
             //TODO: load the image model and show the image from its url
 
             Glide.with(itemView)
