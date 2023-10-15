@@ -6,15 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.na21k.calmnifier.CAT_API_BASE_URL
-import com.na21k.calmnifier.CAT_API_IMAGES_ENDPOINT_NAME
 import com.na21k.calmnifier.R
 import com.na21k.calmnifier.databinding.BreedsListItemBinding
 import com.na21k.calmnifier.model.BreedModel
+import com.na21k.calmnifier.model.ImageModel
 
 class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
 
     var items: List<BreedModel> = listOf()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    var itemImages: List<ImageModel?> = listOf()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -34,20 +39,22 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
 
     override fun getItemCount(): Int = items.size
 
-    class BreedViewHolder(private val binding: BreedsListItemBinding) : ViewHolder(binding.root) {
+    inner class BreedViewHolder(private val binding: BreedsListItemBinding) :
+        ViewHolder(binding.root) {
 
         fun bind(model: BreedModel) {
-            val imageId = model.referenceImageId
-            val imageModelUrl = CAT_API_BASE_URL + CAT_API_IMAGES_ENDPOINT_NAME + imageId
-            //TODO: load the image model and show the image from its url
-
-            Glide.with(itemView)
-                .load("https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg")
-                .placeholder(R.drawable.ic_image_24)
-                .error(R.drawable.ic_error_24)
-                .into(binding.breedPhoto)
-
             binding.breedName.text = model.name
+
+            if (itemImages.isNotEmpty()) {
+                val imageId = model.referenceImageId
+                val imageModel = itemImages.firstOrNull() { it?.id == imageId }
+
+                Glide.with(itemView)
+                    .load(imageModel?.url ?: R.drawable.ic_pets_24)
+                    .placeholder(R.drawable.ic_pets_24)
+                    .error(R.drawable.ic_error_24)
+                    .into(binding.breedPhoto)
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ data class BreedModel(
     val origin: String,
     val weight: BreedWeightModel,
     val lifeSpan: String,
-    val referenceImageId: String,
+    val referenceImageId: String?,
 ) {
     data class BreedWeightModel(
         val metric: String,

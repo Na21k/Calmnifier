@@ -21,7 +21,7 @@
             android:layout_margin="0dp"
             android:contentDescription="@string/breed_photo_content_description"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_image_24" />
+            android:src="@drawable/ic_pets_24" />
 
         <TextView
             android:id="@+id/breed_name"
