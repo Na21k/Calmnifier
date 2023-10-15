@@ -7,4 +7,5 @@
     <!--Content descriptions-->
     <string name="favorites_fab_content_description">Favorites</string>
     <string name="breed_photo_content_description">Breed photo</string>
+    <string name="navigate_up_content_description">Navigate up</string>
 </resources>
