@@ -4,8 +4,13 @@
     <!--Titles-->
     <string name="breeds_title">Breeds</string>
 
+    <!--Labels-->
+    <string name="weight_formatted">Weight: %1$s kg</string>
+    <string name="life_span_formatted">Life span: %1$s years</string>
+
     <!--Content descriptions-->
     <string name="favorites_fab_content_description">Favorites</string>
     <string name="breed_photo_content_description">Breed photo</string>
     <string name="navigate_up_content_description">Navigate up</string>
+    <string name="cat_image_content_description">Cat image</string>
 </resources>

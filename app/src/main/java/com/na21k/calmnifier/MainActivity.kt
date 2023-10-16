@@ -1,5 +1,6 @@
 package com.na21k.calmnifier
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
@@ -12,12 +13,20 @@ import com.google.android.material.snackbar.Snackbar
 import com.na21k.calmnifier.adapters.BreedsAdapter
 import com.na21k.calmnifier.databinding.ActivityMainBinding
 import com.na21k.calmnifier.helpers.generateNewFabLayoutParams
+import com.na21k.calmnifier.model.BreedModel
 
 class MainActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAdapter: BreedsAdapter
     private lateinit var mViewModel: MainActivityViewModel
+    private val mOnBreedActionListener = object : BreedsAdapter.OnItemActionListener {
+        override fun itemOpen(model: BreedModel) {
+            val intent = Intent(this@MainActivity, BreedActivity::class.java)
+            intent.putExtra(BREED_MODEL_EXTRA_KEY, model)
+            startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +36,7 @@ class MainActivity : BaseActivity() {
         mBinding.appBar.appBar.title = getString(R.string.breeds_title)
         setSupportActionBar(mBinding.appBar.appBar)
         makeNavBarLookNice()
+        setListeners()
         mViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
         mAdapter = setUpRecyclerView()
@@ -69,9 +79,15 @@ class MainActivity : BaseActivity() {
         mViewModel.breedImages.observe(this) { mAdapter.itemImages = it }
     }
 
+    override fun setListeners() {
+        mBinding.favoritesFab.setOnClickListener {
+
+        }
+    }
+
     private fun setUpRecyclerView(): BreedsAdapter {
         val rv = mBinding.breedsList
-        val adapter = BreedsAdapter()
+        val adapter = BreedsAdapter(mOnBreedActionListener)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
 

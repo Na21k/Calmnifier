@@ -1,5 +1,7 @@
 package com.na21k.calmnifier.model
 
+import java.io.Serializable
+
 data class BreedModel(
     val id: String,
     val name: String,
@@ -9,9 +11,9 @@ data class BreedModel(
     val weight: BreedWeightModel,
     val lifeSpan: String,
     val referenceImageId: String?,
-) {
+) : Serializable {
     data class BreedWeightModel(
         val metric: String,
         val imperial: String,
-    )
+    ) : Serializable
 }

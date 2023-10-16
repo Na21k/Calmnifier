@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Calmnifier"
         tools:targetApi="31">
         <activity
+            android:name=".BreedActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

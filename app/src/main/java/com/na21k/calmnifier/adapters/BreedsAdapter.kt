@@ -11,7 +11,8 @@ import com.na21k.calmnifier.databinding.BreedsListItemBinding
 import com.na21k.calmnifier.model.BreedModel
 import com.na21k.calmnifier.model.ImageModel
 
-class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
+class BreedsAdapter(val onItemActionListener: OnItemActionListener) :
+    RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
 
     var items: List<BreedModel> = listOf()
         @SuppressLint("NotifyDataSetChanged")
@@ -42,7 +43,14 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
     inner class BreedViewHolder(private val binding: BreedsListItemBinding) :
         ViewHolder(binding.root) {
 
+        private lateinit var mModel: BreedModel
+
+        init {
+            itemView.setOnClickListener { onItemActionListener.itemOpen(mModel) }
+        }
+
         fun bind(model: BreedModel) {
+            mModel = model
             binding.breedName.text = model.name
 
             if (itemImages.isNotEmpty()) {
@@ -56,5 +64,9 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.BreedViewHolder>() {
                     .into(binding.breedPhoto)
             }
         }
+    }
+
+    interface OnItemActionListener {
+        fun itemOpen(model: BreedModel)
     }
 }
